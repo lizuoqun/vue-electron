@@ -14,6 +14,12 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js')
     }
   });
+
+  ipcMain.on('set-title', (event, title) => {
+    const webContents = event.sender;
+    const ipcWin = BrowserWindow.fromWebContents(webContents);
+    ipcWin.setTitle(title);
+  });
   // win = getWindowState();
   win.loadURL('http://localhost:5173/');
 };

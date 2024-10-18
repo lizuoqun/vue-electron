@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer } = require('electron')
+const {contextBridge, ipcRenderer} = require('electron');
 /**
  * 在预处理的过程当中，不能直接将值给绑定到window对象上再取值，
  * 虽然预加载脚本与其所附着的渲染器在共享着一个全局 window 对象，
@@ -12,7 +12,12 @@ contextBridge.exposeInMainWorld('versions', {
   ping: () => ipcRenderer.invoke('ping'),
   // 能暴露的不仅仅是函数，我们还可以暴露变量
   startDrag: (fileName) => {
-    console.log('preload',fileName)
-    ipcRenderer.send('ondragstart', fileName)
+    console.log('preload', fileName);
+    ipcRenderer.send('ondragstart', fileName);
   }
-})
+});
+
+contextBridge.exposeInMainWorld('electronApi', {
+  // 渲染器进程到主进程的通信（单向通信）
+  setTitle: (title) => ipcRenderer.send('set-title', title)
+});
