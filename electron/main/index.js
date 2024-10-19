@@ -19,9 +19,12 @@ const createWindow = () => {
     const webContents = event.sender;
     const ipcWin = BrowserWindow.fromWebContents(webContents);
     ipcWin.setTitle(title);
+    // 要拿到的是渲染进程的窗口，而不是主进程的窗口（虽然两个目前来看是同一个）
+    // win.setTitle(title);
   });
   // win = getWindowState();
   win.loadURL('http://localhost:5173/');
+  win.maximize()
 };
 
 
