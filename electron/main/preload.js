@@ -8,16 +8,15 @@ const {contextBridge, ipcRenderer} = require('electron');
 contextBridge.exposeInMainWorld('versions', {
   node: () => process.versions.node,
   chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron,
-  ping: () => ipcRenderer.invoke('ping'),
-  // 能暴露的不仅仅是函数，我们还可以暴露变量
-  startDrag: (fileName) => {
-    console.log('preload', fileName);
-    ipcRenderer.send('ondragstart', fileName);
-  }
+  electron: () => process.versions.electron
 });
 
 contextBridge.exposeInMainWorld('electronApi', {
   // 渲染器进程到主进程的通信（单向通信）
-  setTitle: (title) => ipcRenderer.send('set-title', title)
+  setTitle: (title) => ipcRenderer.send('set-title', title),
+  // 渲染器进程到主进程的通信（双向通信）
+  openFile: () => ipcRenderer.invoke('dialog:openFile'),
+  // 主进程向渲染器进程发送消息
+  onUpdateCounter: (callback) => ipcRenderer.on('update-counter', (_event, value) => callback(value)),
+  counterValue: (value) => ipcRenderer.send('counter-value', value)
 });
