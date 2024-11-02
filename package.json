@@ -9,7 +9,8 @@
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "start": "electron .",
-    "deva": "npm-run-all --parallel dev start"
+    "deva": "npm-run-all --parallel dev start",
+    "build-win": "electron-builder"
   },
   "dependencies": {
     "electron-window-state": "^5.0.3",
@@ -20,8 +21,30 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
     "electron": "^33.0.1",
+    "electron-builder": "^24.13.3",
     "typescript": "^5.5.3",
     "vite": "^5.4.8",
     "vue-tsc": "^2.1.6"
+  },
+  "build": {
+    "productName": "Electron",
+    "appId": "com.modify",
+    "copyright": "by modify",
+    "asar": true,
+    "win": {
+      "icon": "electron/logo.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "electron/logo.ico",
+      "uninstallerIcon": "electron/logo.ico",
+      "installerHeaderIcon": "electron/logo.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "APP",
+      "runAfterFinish": true
+    }
   }
 }

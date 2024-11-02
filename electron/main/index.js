@@ -2,7 +2,7 @@
 // console.log('hello electron');
 
 
-const {app, BrowserWindow, ipcMain, dialog, Menu} = require('electron');
+const {app, BrowserWindow, ipcMain, dialog, Menu, Tray} = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('node:path');
 
@@ -27,7 +27,7 @@ const createWindow = () => {
 
   const menu = Menu.buildFromTemplate([
     {
-      label: app.name,
+      label: '运算',
       submenu: [
         {
           click: () => win.webContents.send('update-counter', 1),
@@ -43,6 +43,21 @@ const createWindow = () => {
 
   Menu.setApplicationMenu(menu);
   // win.webContents.openDevTools();
+
+  // 托盘图标
+  const tray = new Tray(path.resolve(__dirname, '../logo.ico'));
+
+  const trayMenu = Menu.buildFromTemplate([
+    {label: '子菜单1'},
+    {label: '退出', role: 'quit'},
+    {label: 'Item3', type: 'radio', checked: true},
+    {label: 'Item4', type: 'radio'}
+  ]);
+
+  tray.setContextMenu(trayMenu);
+  tray.setToolTip('This is my application');
+  tray.setTitle('This is my title');
+
   win.loadURL('http://localhost:5173/');
   // win.maximize()
 };
