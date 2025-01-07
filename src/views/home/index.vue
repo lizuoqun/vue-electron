@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="text-blue-400">
     index
   </div>
 </template>

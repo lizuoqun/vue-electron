@@ -58,7 +58,7 @@ const createWindow = () => {
   tray.setToolTip('This is my application');
   tray.setTitle('This is my title');
 
-  win.loadURL('http://localhost:5173/');
+  win.loadURL('http://localhost:5173/menu');
   // win.maximize()
 };
 

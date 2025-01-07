@@ -7,7 +7,7 @@ const allRouter = getRouter();
 
 <template>
   <div>
-    <el-space class="w-full" size="100" wrap>
+    <el-space class="w-full" size="small" wrap>
       <el-card v-for="item in allRouter" :key="item.path" class="box-card" shadow="hover"
                style="width: calc((100vw - 50px) / 4);height: 300px">
         <template #header>
