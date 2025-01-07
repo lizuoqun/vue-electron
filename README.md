@@ -1,5 +1,22 @@
-# Vue 3 + TypeScript + Vite
+# 项目说明
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+这是一个基于vue3+electron的项目
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 启动运行
+
+安装项目依赖启动Vue项目运行
+
+```shell
+npm install
+npm run dev
+npm run build
+npm run preview
+```
+
+启动electron、同时启动vue+electron、打包windows安装包
+
+```shell
+npm run start
+npm run deva
+npm run build-win
+```
