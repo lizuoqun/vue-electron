@@ -5,7 +5,8 @@
 const {app, BrowserWindow, ipcMain, dialog, Menu, Tray} = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('node:path');
-const url = require('url');
+// 用这个调用别的js
+const {exec} = require('child_process');
 
 const createWindow = () => {
   const win = new BrowserWindow({
@@ -43,7 +44,7 @@ const createWindow = () => {
   ]);
 
   Menu.setApplicationMenu(menu);
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   // 托盘图标
   const tray = new Tray(path.resolve(__dirname, '../logo.ico'));
@@ -60,10 +61,11 @@ const createWindow = () => {
   tray.setTitle('This is my title');
 
   // win.loadURL('http://localhost:5173/menu');
-  const targetUrl = path.resolve(__dirname, '../../dist-vue/index.html');
-  console.log(' =====', targetUrl)
-  win.loadURL(`file://${targetUrl}`);
-  // console.log(' =====', path.resolve(__dirname, '../../dist-vue/index.html'))
+
+  win.loadURL('http://localhost:3000');
+
+  // const targetUrl = path.resolve(__dirname, '../../dist-vue/index.html');
+  // win.loadURL(`file://${targetUrl}`);
   // win.loadFile(path.resolve(__dirname, '../../dist-vue/index.html'));
   // win.maximize()
 };
@@ -77,6 +79,16 @@ async function handleFileOpen() {
 }
 
 app.whenReady().then(() => {
+
+  // 执行cmd命令，执行node脚本启动3000端口
+  exec('node ./dist-vue/server.js', (err, stdout, stderr) => {
+    if (err) {
+      console.error(`启动3000失败: ${stderr}`);
+      return;
+    }
+    console.log('exec--------', stdout);
+  });
+
   ipcMain.handle('dialog:openFile', handleFileOpen);
   ipcMain.on('counter-value', (_event, value) => {
     console.log(value);
