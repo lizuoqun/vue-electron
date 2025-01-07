@@ -2,6 +2,9 @@ import {createRouter, createWebHistory} from 'vue-router';
 
 const routes = [
   {
+    path: '/', redirect: '/home'
+  },
+  {
     path: '/menu',
     name: 'Menu',
     component: () => import('@/views/menu/index.vue'),

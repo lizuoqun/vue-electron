@@ -5,11 +5,12 @@
 const {app, BrowserWindow, ipcMain, dialog, Menu, Tray} = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('node:path');
+const url = require('url');
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -42,7 +43,7 @@ const createWindow = () => {
   ]);
 
   Menu.setApplicationMenu(menu);
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
 
   // 托盘图标
   const tray = new Tray(path.resolve(__dirname, '../logo.ico'));
@@ -58,7 +59,12 @@ const createWindow = () => {
   tray.setToolTip('This is my application');
   tray.setTitle('This is my title');
 
-  win.loadURL('http://localhost:5173/menu');
+  // win.loadURL('http://localhost:5173/menu');
+  const targetUrl = path.resolve(__dirname, '../../dist-vue/index.html');
+  console.log(' =====', targetUrl)
+  win.loadURL(`file://${targetUrl}`);
+  // console.log(' =====', path.resolve(__dirname, '../../dist-vue/index.html'))
+  // win.loadFile(path.resolve(__dirname, '../../dist-vue/index.html'));
   // win.maximize()
 };
 

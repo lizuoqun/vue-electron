@@ -7,6 +7,6 @@ import './style.css';
 import router from './router/index';
 
 createApp(App)
-  .use(ElementPlus, {locale: zhCn, size: 'small', zIndex: 3000})
+  .use(ElementPlus, {locale: zhCn, size: 'default', zIndex: 3000})
   .use(router)
   .mount('#app');
