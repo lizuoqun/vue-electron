@@ -10,6 +10,10 @@ export default defineConfig({
       imports: ['vue', 'vue-router'],
       dts: 'src/auto-import.d.ts'
     })],
+  base: './',
+  build: {
+    outDir: 'dist-vue'
+  },
   resolve: {
     alias: {
       //别名配置

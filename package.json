@@ -6,7 +6,7 @@
   "main": "electron/main/index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "start": "electron .",
     "deva": "npm-run-all --parallel dev start",
