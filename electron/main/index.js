@@ -5,7 +5,7 @@
 const {app, BrowserWindow, ipcMain, dialog, Menu, Tray} = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const path = require('node:path');
-// 用这个调用别的js
+// 执行CMD命令
 const {exec} = require('child_process');
 
 const createWindow = () => {
