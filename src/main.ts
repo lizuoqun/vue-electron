@@ -5,6 +5,7 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import App from './App.vue';
 import './style.css';
 import './assets/style/element.css';
+import './assets/style/tailwind.css';
 import router from './router/index';
 
 createApp(App)

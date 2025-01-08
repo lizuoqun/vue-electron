@@ -41,7 +41,7 @@ const allMenuList = [
   },
   {
     id: '2', name: '菜单1', icon: 'iconfont icon-menu', children: [
-      {id: '2-1', name: '子菜单', url: '/menu1'}
+      {id: '2-1', name: 'electron 通信', url: '/sendMessage'}
     ]
   }
 ];
@@ -49,6 +49,6 @@ const allMenuList = [
 const onMenuSelect = async (index: string) => {
   const [start, end] = index.split('-') as [string, string];
   const url = allMenuList[Number(start) - 1].children[Number(end) - 1].url;
-  await router.push(url);
+  await router.replace(url);
 };
 </script>

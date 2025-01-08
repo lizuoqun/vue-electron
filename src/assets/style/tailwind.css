@@ -1,0 +1,18 @@
+/**------------------------Transition name=slide-zoom-----------------------------------*/
+.slide-zoom-enter-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-zoom-leave-active {
+    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-zoom-enter-from {
+    transform: scale3d(0, 0, 0);
+    transform-origin: 0 0;
+}
+
+.slide-zoom-leave-to {
+    transform: scale3d(0, 0, 0);
+    transform-origin: 100% 100%;
+}
