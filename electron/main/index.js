@@ -60,9 +60,10 @@ const createWindow = () => {
   tray.setToolTip('This is my application');
   tray.setTitle('This is my title');
 
-  // win.loadURL('http://localhost:5173/menu');
+  win.loadURL('http://localhost:5173');
 
-  win.loadURL('http://localhost:3000');
+  // 打包的时候使用这个搭配85line exec
+  // win.loadURL('http://localhost:3000');
 
   // const targetUrl = path.resolve(__dirname, '../../dist-vue/index.html');
   // win.loadURL(`file://${targetUrl}`);
@@ -81,13 +82,13 @@ async function handleFileOpen() {
 app.whenReady().then(() => {
 
   // 执行cmd命令，执行node脚本启动3000端口
-  exec('node ./dist-vue/server.js', (err, stdout, stderr) => {
-    if (err) {
-      console.error(`启动3000失败: ${stderr}`);
-      return;
-    }
-    console.log('exec--------', stdout);
-  });
+  // exec('node ./dist-vue/server.js', (err, stdout, stderr) => {
+  //   if (err) {
+  //     console.error(`启动3000失败: ${stderr}`);
+  //     return;
+  //   }
+  //   console.log('exec--------', stdout);
+  // });
 
   ipcMain.handle('dialog:openFile', handleFileOpen);
   ipcMain.on('counter-value', (_event, value) => {

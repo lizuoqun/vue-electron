@@ -4,6 +4,7 @@ import 'element-plus/dist/index.css';
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import App from './App.vue';
 import './style.css';
+import './assets/style/element.css';
 import router from './router/index';
 
 createApp(App)
