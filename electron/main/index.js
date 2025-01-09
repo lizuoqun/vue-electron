@@ -50,15 +50,20 @@ const createWindow = () => {
   const tray = new Tray(path.resolve(__dirname, '../logo.ico'));
 
   const trayMenu = Menu.buildFromTemplate([
-    {label: '子菜单1'},
+    {label: '子菜单1', type: 'separator', click: () => console.log('子菜单1')},
     {label: '退出', role: 'quit'},
     {label: 'Item3', type: 'radio', checked: true},
     {label: 'Item4', type: 'radio'}
   ]);
 
   tray.setContextMenu(trayMenu);
-  tray.setToolTip('This is my application');
+  tray.setToolTip('悬浮提示');
   tray.setTitle('This is my title');
+
+  tray.on('click', () => {
+    console.log('触发了click事件 =====');
+    win.show();
+  });
 
   win.loadURL('http://localhost:5173');
 

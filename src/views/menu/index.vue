@@ -46,6 +46,7 @@ const allMenuList = [
   }
 ];
 
+// 菜单选择事件
 const onMenuSelect = async (index: string) => {
   const [start, end] = index.split('-') as [string, string];
   const url = allMenuList[Number(start) - 1].children[Number(end) - 1].url;
